@@ -5,11 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
 public class ReactiveConfig {
     @Bean
-    public RouterFunction<?> routerFunction(RouterHandlers routersHandlers) {
+    public RouterFunction<ServerResponse> routerFunction(RouterHandlers routersHandlers) {
         return RouterFunctions.route(RequestPredicates.GET("/api/customers/all"), routersHandlers::getAll)
                 .andRoute(RequestPredicates.GET("/api/customers/{id}"), routersHandlers::getId)
                 .andRoute(RequestPredicates.GET("/api/customers/{id}/events"), routersHandlers::getEvents);

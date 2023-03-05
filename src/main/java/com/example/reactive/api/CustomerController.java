@@ -1,21 +1,21 @@
 package com.example.reactive.api;
 
-import com.example.reactive.domain.Customer;
-import com.example.reactive.domain.CustomerEvent;
+import com.example.reactive.domain.entities.Customer;
+import com.example.reactive.domain.entities.CustomerEvent;
 import com.example.reactive.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RestController("/api/customers")
+@RestController
+@RequestMapping("/api/customers")
 @RequiredArgsConstructor
 public class CustomerController {
-
     private final CustomerService customerService;
 
     @GetMapping("/all")

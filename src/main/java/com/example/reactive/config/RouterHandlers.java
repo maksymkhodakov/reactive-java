@@ -1,21 +1,14 @@
 package com.example.reactive.config;
 
-import com.example.reactive.domain.Customer;
-import com.example.reactive.domain.CustomerEvent;
+import com.example.reactive.domain.entities.Customer;
+import com.example.reactive.domain.entities.CustomerEvent;
 import com.example.reactive.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.util.function.Tuple2;
-
-import java.time.Duration;
-import java.util.Date;
-import java.util.UUID;
-import java.util.stream.Stream;
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +19,7 @@ public class RouterHandlers {
         return ServerResponse
                 .ok()
                 .body(
-                        customerService, Customer.class
+                        customerService.getAll(), Customer.class
                 );
     }
 
