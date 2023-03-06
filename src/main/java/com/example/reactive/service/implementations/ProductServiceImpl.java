@@ -5,7 +5,6 @@ import com.example.reactive.domain.entities.Product;
 import com.example.reactive.repository.ProductRepository;
 import com.example.reactive.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Range;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Flux<ProductDTO> getInRange(double min, double max) {
-        return productRepository.findByPriceBetween(Range.closed(min, max));
+        return productRepository.findByPriceBetween(Mono.just(min), Mono.just(max));
     }
 
     @Override
