@@ -1,4 +1,4 @@
-package com.example.reactive.domain;
+package com.example.reactive.domain.interfces;
 
 public interface IProduct {
     String getId();

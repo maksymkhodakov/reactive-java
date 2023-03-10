@@ -1,6 +1,6 @@
 package com.example.reactive.api;
 
-import com.example.reactive.domain.entities.Customer;
+import com.example.reactive.domain.dto.CustomerDTO;
 import com.example.reactive.domain.entities.CustomerEvent;
 import com.example.reactive.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +19,12 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("/all")
-    public Flux<Customer> getAll() {
+    public Flux<CustomerDTO> getAll() {
         return customerService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Mono<Customer> getById(@PathVariable String id) {
+    public Mono<CustomerDTO> getById(@PathVariable String id) {
         return customerService.getById(id);
     }
 

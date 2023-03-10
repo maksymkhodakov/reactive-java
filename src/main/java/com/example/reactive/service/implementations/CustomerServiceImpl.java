@@ -1,6 +1,6 @@
 package com.example.reactive.service.implementations;
 
-import com.example.reactive.domain.entities.Customer;
+import com.example.reactive.domain.dto.CustomerDTO;
 import com.example.reactive.domain.entities.CustomerEvent;
 import com.example.reactive.repository.CustomerRepository;
 import com.example.reactive.service.CustomerService;
@@ -21,13 +21,17 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public Flux<Customer> getAll() {
-        return customerRepository.findAll();
+    public Flux<CustomerDTO> getAll() {
+        return customerRepository
+                .findAll()
+                .map(CustomerDTO::new);
     }
 
     @Override
-    public Mono<Customer> getById(String id) {
-        return customerRepository.findById(UUID.fromString(id));
+    public Mono<CustomerDTO> getById(String id) {
+        return customerRepository
+                .findById(UUID.fromString(id))
+                .map(CustomerDTO::new);
     }
 
     @Override

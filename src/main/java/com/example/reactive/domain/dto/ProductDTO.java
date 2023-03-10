@@ -1,6 +1,6 @@
 package com.example.reactive.domain.dto;
 
-import com.example.reactive.domain.IProduct;
+import com.example.reactive.domain.interfces.IProduct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
