@@ -48,4 +48,16 @@ public class CustomerServiceImpl implements CustomerService {
                             .map(Tuple2::getT2);
                 });
     }
+
+    @Override
+    public Flux<CustomerDTO> getByName(String name) {
+        return customerRepository
+                .findByName(name)
+                .map(CustomerDTO::new);
+    }
+
+    @Override
+    public Mono<Void> delete(String id) {
+        return customerRepository.deleteById(UUID.fromString(id));
+    }
 }

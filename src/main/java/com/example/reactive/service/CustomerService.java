@@ -9,4 +9,6 @@ public interface CustomerService {
     Flux<CustomerDTO> getAll();
     Mono<CustomerDTO> getById(String id);
     Flux<CustomerEvent> getEvents(String id);
+    Flux<CustomerDTO> getByName(String name);
+    Mono<Void> delete(String id);
 }

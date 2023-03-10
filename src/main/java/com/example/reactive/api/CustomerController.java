@@ -5,10 +5,7 @@ import com.example.reactive.domain.entities.CustomerEvent;
 import com.example.reactive.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -21,6 +18,16 @@ public class CustomerController {
     @GetMapping("/all")
     public Flux<CustomerDTO> getAll() {
         return customerService.getAll();
+    }
+
+    @GetMapping("/name/{name}")
+    public Flux<CustomerDTO> getByName(@PathVariable String name) {
+        return customerService.getByName(name);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Mono<Void> delete(@PathVariable("id") String id) {
+        return customerService.delete(id);
     }
 
     @GetMapping("/{id}")
