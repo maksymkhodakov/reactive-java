@@ -1,7 +1,8 @@
-package com.example.reactive.config;
+package com.example.reactive.handlers.implementations;
 
 import com.example.reactive.domain.entities.Customer;
 import com.example.reactive.domain.entities.CustomerEvent;
+import com.example.reactive.handlers.CustomerHandler;
 import com.example.reactive.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -12,9 +13,10 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class RouterHandlers {
+public class CustomerHandlerImpl implements CustomerHandler {
     private final CustomerService customerService;
 
+    @Override
     public Mono<ServerResponse> getAll(ServerRequest serverRequest) {
         return ServerResponse
                 .ok()
@@ -23,6 +25,7 @@ public class RouterHandlers {
                 );
     }
 
+    @Override
     public Mono<ServerResponse> getId(ServerRequest serverRequest) {
         final String customerId = serverRequest.pathVariable("id");
         return ServerResponse
@@ -30,6 +33,7 @@ public class RouterHandlers {
                 .body(customerService.getById(customerId), Customer.class);
     }
 
+    @Override
     public Mono<ServerResponse> getEvents(ServerRequest serverRequest) {
         final String customerId = serverRequest.pathVariable("id");
         return ServerResponse
