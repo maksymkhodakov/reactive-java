@@ -16,19 +16,19 @@ public class StudentRouter {
     public RouterFunction<ServerResponse> route(StudentHandler studentHandler){
         return RouterFunctions
                 .route(
-                        GET("api/students/{id:[0-9]+}")
+                        GET("/api/students/{id:[0-9]+}")
                                 .and(accept(APPLICATION_JSON)), studentHandler::getStudent)
                 .andRoute(
-                        GET("/students")
+                        GET("/api/students")
                                 .and(accept(APPLICATION_JSON)), studentHandler::listStudents)
                 .andRoute(
-                        POST("/students")
+                        POST("/api/students")
                                 .and(accept(APPLICATION_JSON)),studentHandler::addNewStudent)
                 .andRoute(
-                        PUT("students/{id:[0-9]+}")
+                        PUT("/api/students/{id:[0-9]+}")
                                 .and(accept(APPLICATION_JSON)), studentHandler::updateStudent)
                 .andRoute(
-                        DELETE("/students/{id:[0-9]+}")
+                        DELETE("/api/students/{id:[0-9]+}")
                                 .and(accept(APPLICATION_JSON)), studentHandler::deleteStudent);
     }
 }
