@@ -8,11 +8,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 
 @Configuration
-public class R2DBCConfig {
+@EnableR2dbcRepositories
+public class R2DBCConfig extends AbstractR2dbcConfiguration {
     @Value("${MARIA_USER}")
     private String user;
     @Value("${MARIA_PASSWORD}")
